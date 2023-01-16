@@ -1,6 +1,43 @@
-/* random number generator */
+/* 
+   mean(distribution: number[]):number
+   Computes the arithmetic mean of a distribution
+*/
+export const mean = (distribution = [0]) => {
+  /* Check validity of the distribution and add the numbers*/
+  if (distribution.length === 0) {
+    throw new TypeError("The distribution must contain at least one element");
+  }
+
+  let sum = 0;
+  distribution.forEach((value, index) => {
+    if (typeof value !== "number") {
+      throw new TypeError(`" ${value} " at index ${index} is not a number`);
+    } else if (!Number.isFinite(value)) {
+      throw new RangeError(
+        `" ${value} " at index ${index} is ${
+          Number.isNaN(value) ? NaN : "Infinite"
+        }`
+      );
+    } 
+    sum += value;
+  });
+
+  /* (If the sum of the numbers is too great) */
+  if(sum >= Infinity){
+    throw new RangeError("Numbers of the distribution are too great"); 
+  }
+  return sum / distribution.length;
+};
+
+/* 
+   rand(min:number, max:number, options: {int: boolean}):number
+   Generates a random number with a minimum of min and a maximum of max. 
+
+   Options
+   int : Return an integer value
+*/
 export const rand = (min = 0, max = 0, options = { int: false }) => {
-  /* Check for the validity of the number */
+  /* Check for the validity of the numbers */
   if (typeof min !== "number" || typeof max !== "number") {
     throw new TypeError(
       `The ${
@@ -22,11 +59,11 @@ export const rand = (min = 0, max = 0, options = { int: false }) => {
           ? "maximum"
           : 0
       } is ${
-        Number.isNaN(min) || Number.isNaN(max)
-          ? "NaN"
-          : Number.isFinite(min) || Number.isFinite(max)
-          ? "Infinite"
-          : 0
+        /* 
+           NaN is also considered infinite, so checking it first
+           avoids returning "Infinite" every time
+        */
+        Number.isNaN(min) || Number.isNaN(max) ? NaN : "Infinite"
       }`
     );
   } else if (min === max) {
@@ -51,3 +88,7 @@ export const rand = (min = 0, max = 0, options = { int: false }) => {
     ? Math.random() * (max - min) + min
     : Math.floor(Math.random() * (max - min + 1) + min);
 };
+
+export const pythonize = () =>{
+
+}; 
