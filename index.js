@@ -8,5 +8,3 @@ import {
   rand,
   reverseString,
 } from "./lib.js";
-
-console.log(quadraticFormula(1, 3 ,2));

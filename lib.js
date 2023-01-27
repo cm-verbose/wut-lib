@@ -189,5 +189,5 @@ export const reverseString = (string = "") => {
   } else if (typeof string !== "string") {
     throw new TypeError(`${string} is not a string`);
   }
-  return string.split("").reverse().join();
+  return string.split("").reverse().join("");
 };
