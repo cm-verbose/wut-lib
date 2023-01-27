@@ -1,6 +1,12 @@
 /* eslint-disable no-unused-vars */
 
-import { 
-    mean , 
-    rand 
+import {
+  geometricMean,
+  matrixTranspose,
+  mean,
+  quadraticFormula,
+  rand,
+  reverseString,
 } from "./lib.js";
+
+console.log(quadraticFormula(1, 3 ,2));
