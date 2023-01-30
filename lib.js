@@ -29,12 +29,30 @@ export const geometricMean = (distribution = [0]) => {
 };
 
 /* 
-   mean(distribution: number[]):number
-   Computes the arithmetic mean of a distribution.
+  isEven(integer:number):number
+  Returns true if the integer is even, otherwise, return false.
+*/
+export const isEven = (integer = 0) => {
+  if (!integer) {
+    throw new TypeError("No arguments provided");
+  } else if (typeof integer !== "number") {
+    throw new TypeError(`${integer} is not a number`);
+  } else if (!Number.isFinite(integer)) {
+    throw new TypeError(`${integer} is infinite`);
+  } else if( Math.floor(integer) !== integer){
+    throw new TypeError(`${integer} is not an integer`);
+  }
+  
+  return integer % 2 === 0;
+};
+
+/* 
+  mean(distribution: number[]):number
+  Computes the arithmetic mean of a distribution.
 */
 
 export const mean = (distribution = [0]) => {
-  /* Check validity of the distribution and add the numbers*/
+  /* Check validity of the distribution and add the numbers */
   if (distribution.length === 0) {
     throw new TypeError("The distribution must contain at least one element");
   }
@@ -108,7 +126,9 @@ export const quadraticFormula = (a = 0, b = 0, c = 0) => {
     throw new RangeError("parameter a musn't be 0");
   } else if (c > b ** 2 / (4 * a)) {
     throw new RangeError(
-      `b ** 2 - 4 * a * c is ${b ** 2 - 4 * a * c}, and no root of any negative number is real`
+      `b ** 2 - 4 * a * c is ${
+        b ** 2 - 4 * a * c
+      }, and no root of any negative number is real`
     );
   }
   return [
@@ -125,7 +145,7 @@ export const quadraticFormula = (a = 0, b = 0, c = 0) => {
    int : Return an integer value
 */
 
-export const rand = (min = 0, max = 0, options = { int: false }) => {
+export const random = (min = 0, max = 0, options = { int: false }) => {
   /* Check for the validity of the numbers */
   if (typeof min !== "number" || typeof max !== "number") {
     throw new TypeError(
@@ -167,9 +187,9 @@ export const rand = (min = 0, max = 0, options = { int: false }) => {
   if (min < 0) {
     const deg = 10 ** Math.floor(Math.log10(-min) + 1);
     if (options.int === false) {
-      return rand(deg + min, deg + max) - deg;
+      return random(deg + min, deg + max) - deg;
     } else if (options.int == true) {
-      return rand(deg + min, deg + max, (options = { int: true })) - deg;
+      return random(deg + min, deg + max, (options = { int: true })) - deg;
     }
   }
 

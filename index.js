@@ -2,9 +2,11 @@
 
 import {
   geometricMean,
+  isEven,
   matrixTranspose,
   mean,
   quadraticFormula,
-  rand,
+  random,
   reverseString,
 } from "./lib.js";
+
