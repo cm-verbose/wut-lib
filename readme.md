@@ -1,2 +1,3 @@
-# wut-lib 
-I actually don't know why I'm making this library. 
+# Wut lib 
+
+This is a library including a series of functions that might be useful in particular contexts. 
